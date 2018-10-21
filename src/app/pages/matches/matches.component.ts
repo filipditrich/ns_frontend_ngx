@@ -76,11 +76,14 @@ export class MatchesComponent implements OnInit {
   }
 
   matchParticipation(willParticipate, matchId) {
-    console.log(matchId);
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    // console.log(matchId);
     // const user = this.roleCheck.getUserInfo();
     const requestBody = {
       participation: willParticipate,
-      matchID: matchId
+      matchID: matchId,
+      userName: user["name"],
+      userID: user["_id"],
     };
     this.matchesService.participationInMatchRequest(requestBody).subscribe( response => {
       console.log(response);
@@ -91,7 +94,7 @@ export class MatchesComponent implements OnInit {
 
   isUserEnrolled(enrolledPlayers) {
     const user = JSON.parse(sessionStorage.getItem("user"));
-    if(enrolledPlayers.indexOf(user._id) >= 0) {
+    if (enrolledPlayers.indexOf(user._id) >= 0) {
       return true;
     } else {
       return false;

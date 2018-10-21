@@ -3,6 +3,7 @@ import {LocalDataSource} from "ng2-smart-table";
 import {SmartTableService} from "../../../@core/data/smart-table.service";
 import {RequestsService} from "../requests.service";
 import {ErrorHelper} from "../../../@core/helpers/error.helper";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'ngx-registration-requests',
@@ -12,6 +13,10 @@ import {ErrorHelper} from "../../../@core/helpers/error.helper";
 export class RegistrationRequestsComponent implements OnInit {
 
   public openForm: boolean = false;
+  public formInviteOne: FormGroup;
+  public formInviteMore: FormGroup;
+  public multipleInvitesConst: boolean;
+  public invitesArray = [];
 
   constructor(
     private service: SmartTableService,
@@ -20,6 +25,15 @@ export class RegistrationRequestsComponent implements OnInit {
   ) {
     // const data = this.service.getData();
     // this.source.load(data);
+
+    this.formInviteOne = new FormGroup({
+      email: new FormControl(null, [Validators.required]),
+      name: new FormControl(null, [Validators.required]),
+    });
+    this.formInviteMore = new FormGroup({
+      email: new FormControl(null, [Validators.required]),
+      name: new FormControl(null, [Validators.required]),
+    });
 
     this.requestsService.getAllRequests().subscribe(requests => {
       const data = requests["response"];
@@ -34,11 +48,17 @@ export class RegistrationRequestsComponent implements OnInit {
       setTimeout(() => {
         console.log(requestsArray);
         this.source.load(requestsArray);
-        }, 3000);
+        }, 1000);
     }, err => {
       this.errorHelper.handleGenericError(err);
     });
   }
+
+  get oneEmail() { return this.formInviteOne.get('email'); }
+  get oneName() { return this.formInviteOne.get('name'); }
+
+  get moreEmail() { return this.formInviteMore.get('email'); }
+  get moreName() { return this.formInviteMore.get('name'); }
 
   ngOnInit() {
   }
@@ -84,6 +104,74 @@ export class RegistrationRequestsComponent implements OnInit {
       });
     } else {
       this.errorHelper.handleGenericError(401);
+    }
+  }
+
+  sendInvite(input) {
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    const requestBody = {
+      email: input["email"],
+      name: input["name"],
+      invited: true
+    };
+    if (!this.formInviteOne.valid) {
+      this.oneEmail.markAsTouched();
+    } else if(this.invitesArray.length === 0){
+      console.log(this.invitesArray.length);
+      console.log('WE HERE BIČÍZ')
+    } else {
+      console.log('WE HERE BIČÍZ IN ELZ')
+      this.sendEmailInvitations(requestBody);
+      this.formInviteOne.reset();
+    }
+  }
+
+  sendEmailInvitations(emails) {
+
+    this.requestsService.sendInvitations(emails).subscribe(response => {
+
+      if (response.response.success && response.sent.length !== 0) {
+        const total = Array.isArray(emails.emails) ? emails.emails.length : 1;
+      //   if (response.sent.length !== total) {
+      //     this.alertsService.alertWarning({
+      //       title: 'Invitations sent',
+      //       body: `We were able to send only ${response.sent.length} out of ${total} invitation emails. <br><b>Failure emails:</b><br> ${response.unsent.join(',<br>')}`
+      //     }, 5000);
+      //     this.loadRequests();
+      //   } else {
+      //     this.alertsService.alertSuccess({
+      //       title: 'Invitations sent!',
+      //       body: `We have successfully sent ${response.sent.length} out of ${total} invitation emails.`
+      //     }, 5000);
+      //     this.loadRequests();
+      //   }
+      // } else if (response.response.success && response.sent.length === 0 && response.unsent.length !== 0) {
+      //   this.alertsService.alertDanger({
+      //     title: 'Error sending invitations',
+      //     body: `We weren't able to send a single invitation email. Please make sure the invitation email is valid and is not already in invitation list.<br><b>Failure emails:</b><br> ${response.unsent.join(',<br>')}`
+      //   }, 7500);
+        console.log('Success')
+      } else {
+        this.errorHelper.processedButFailed(response);
+      }
+
+    }, error => {
+
+      // optional error handling
+      // ...
+
+      // then generic (if no handle before)
+      this.errorHelper.handleGenericError(error);
+
+    });
+  }
+
+  addToArray(input) {
+    if (this.invitesArray.indexOf(input) >= 0) {
+      console.log('Already exists');
+    } else {
+      this.invitesArray.push(input);
+      sessionStorage.setItem('invitesArray', JSON.stringify(this.invitesArray));
     }
   }
 

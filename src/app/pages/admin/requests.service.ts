@@ -20,4 +20,9 @@ export class RequestsService {
     return this.http.post<any>(`${getUrl('operator','REG_REQ_APR')}`, requestBody);
   }
 
+  sendInvitations(requestBody): Observable<any> {
+    // TODO - on backend
+    return this.http.post<any>(getUrl('operator', 'INV_REQ'), requestBody);
+  }
+
 }

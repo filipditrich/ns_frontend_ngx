@@ -38,7 +38,7 @@ export class PagesComponent {
     icon: 'nb-gear',
     children: [
       {
-        title: 'Přijmání registrací',
+        title: 'Uživatelé',
         link: '/pages/admin/registration-requests',
       },
       {

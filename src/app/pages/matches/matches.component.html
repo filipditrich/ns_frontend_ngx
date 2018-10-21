@@ -45,7 +45,7 @@
             <li *ngIf="match.place">Místo: {{match.place}}</li>
             <li *ngIf="match.enrollment.players"> Zůčastní se
               <ul>
-                <li *ngFor="let player of match.enrollment.players">{{player._id}}</li>
+                <li *ngFor="let player of match.enrollment.players">{{player.name}}</li>
               </ul>
             </li>
             <li *ngIf="match.info">{{match.info}}</li>

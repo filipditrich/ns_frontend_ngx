@@ -27,6 +27,5 @@ export class RegistrationService {
 
   registerUser(hash: string, credentials: IRegistrationCredentials): Observable<any> {
     return this.http.post<any>(`${getUrl('operator', 'REG')}/${hash}`, credentials);
-    console.log(getUrl('operator', 'REG'))
   }
 }
