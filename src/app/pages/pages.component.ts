@@ -23,7 +23,7 @@ export class PagesComponent {
 
   menu = [{
     title: 'Zápasy',
-    icon: 'fa fa-beer',
+    icon: 'fa fa-bolt',
     children: [
       {
         title: 'Zápasy',
@@ -48,6 +48,7 @@ export class PagesComponent {
     ]
   }, {
       title: 'User',
-      link: '/pages/user/profile'
+      link: '/pages/user/profile',
+      icon: 'nb-person'
   }];
 }

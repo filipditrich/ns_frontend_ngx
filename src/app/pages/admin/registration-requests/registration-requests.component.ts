@@ -56,7 +56,6 @@ export class RegistrationRequestsComponent implements OnInit {
 
   get oneEmail() { return this.formInviteOne.get('email'); }
   get oneName() { return this.formInviteOne.get('name'); }
-
   get moreEmail() { return this.formInviteMore.get('email'); }
   get moreName() { return this.formInviteMore.get('name'); }
 
@@ -69,6 +68,7 @@ export class RegistrationRequestsComponent implements OnInit {
     actions: {
       delete: false,
       edit: false,
+      add: false,
       custom: [
         {
           name: 'confirm',
@@ -116,11 +116,8 @@ export class RegistrationRequestsComponent implements OnInit {
     };
     if (!this.formInviteOne.valid) {
       this.oneEmail.markAsTouched();
-    } else if(this.invitesArray.length === 0){
-      console.log(this.invitesArray.length);
-      console.log('WE HERE BIČÍZ')
     } else {
-      console.log('WE HERE BIČÍZ IN ELZ')
+      console.log('WE HERE BIČÍZ IN ELZ');
       this.sendEmailInvitations(requestBody);
       this.formInviteOne.reset();
     }
@@ -129,6 +126,7 @@ export class RegistrationRequestsComponent implements OnInit {
   sendEmailInvitations(emails) {
 
     this.requestsService.sendInvitations(emails).subscribe(response => {
+      console.log('Got response');
 
       if (response.response.success && response.sent.length !== 0) {
         const total = Array.isArray(emails.emails) ? emails.emails.length : 1;
