@@ -23,7 +23,7 @@ export class PagesComponent {
 
   menu = [{
     title: 'Zápasy',
-    icon: 'fa fa-bolt',
+    icon: 'nb-compose',
     children: [
       {
         title: 'Zápasy',
