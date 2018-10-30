@@ -76,16 +76,16 @@ export class PreventLogged implements CanActivate {
 
 @Injectable()
 export class RoleCheck {
-  private user = sessionStorage.getItem('user');
-  // public userRoles = [];
-  //
-  // constructor() {
-  //   this.userRoles = this.user["roles"];
-  // }
-  //
-  // isAdmin() {
-  //   return this.userRoles.indexOf('admin') > 0;
-  // }
+  private user = JSON.parse(sessionStorage.getItem('user'));
+  public userRoles = [];
+
+  constructor() {
+    this.userRoles = this.user["roles"];
+  }
+
+  isAdmin() {
+    return this.userRoles.indexOf('admin') >= 0;
+  }
 }
 
 

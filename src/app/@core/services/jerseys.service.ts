@@ -17,4 +17,8 @@ export class JerseysService {
   addJersey(input) {
     return this.http.post('http://localhost:4000/api/core/jerseys', {input})
   }
+
+  deleteJersey(jerseyID) {
+    return this.http.delete(`http://localhost:4000/api/core/jerseys/${jerseyID}`)
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { RoleCheckService } from "../../@core/services/roleCheck.service";
+import {RoleCheck} from "../../@core/services/auth.guard";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatchesService} from "./matches.service";
 import {ErrorHelper} from "../../@core/helpers/error.helper";
@@ -20,7 +20,9 @@ export class MatchesComponent implements OnInit {
 
   constructor(
     private matchesService: MatchesService,
-    private errorHelper: ErrorHelper
+    private errorHelper: ErrorHelper,
+    private roleCheck: RoleCheck
+
   ) {
 
     this.form = new FormGroup({

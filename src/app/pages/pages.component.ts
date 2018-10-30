@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import {RoleCheck} from "../@core/services/auth.guard";
 
-// import {RoleCheckService} from "../@core/services/roleCheck.service";
-
 @Component({
   selector: 'ngx-pages',
   template: `
@@ -13,8 +11,6 @@ import {RoleCheck} from "../@core/services/auth.guard";
   `,
 })
 export class PagesComponent {
-  public user = sessionStorage.getItem('user');
-  public role = this.user["roles"];
   constructor(
     private roleCheck: RoleCheck
   ) {
@@ -36,6 +32,7 @@ export class PagesComponent {
     }, {
     title: 'Admin',
     icon: 'nb-gear',
+    hidden: !this.roleCheck.isAdmin(),
     children: [
       {
         title: 'Uživatelé',

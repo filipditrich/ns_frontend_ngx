@@ -3,7 +3,7 @@
     <nb-card class="inline-form-card">
       <nb-card-header>Vytvořit nový dres</nb-card-header>
       <nb-card-body>
-        <form class="form-inline" [formGroup]="form" (submit)="addJersey()">
+        <form class="form-inline" [formGroup]="form" (submit)="addJersey(form.value)">
           <input type="text" class="form-control full-width" formControlName="name" placeholder="Barva dresu">
           <div class="input-group full-width">
             <input type="text" class="form-control" formControlName="value" placeholder="Hodnota dresu">
@@ -23,7 +23,7 @@
       </nb-card-header>
       <nb-card-footer>
         <div class="btn-with-icon-example btn-group-full-width">
-          <button class="btn btn-danger full-width" type="button" (click)="matchParticipation(false, match._id)">
+          <button class="btn btn-danger full-width" type="button" (click)="deleteJersey(jersey._id)">
             <span>Odebrat</span>
           </button>
         </div>

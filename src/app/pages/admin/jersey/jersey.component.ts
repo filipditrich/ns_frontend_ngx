@@ -32,7 +32,21 @@ export class JerseyComponent implements OnInit {
   }
 
   addJersey(input) {
-    this.jerseyService.addJersey(input).subscribe(response => {
+    let name = input["name"];
+    let value = input["value"];
+    name = name.substr(0, 1).toUpperCase() + name.substr(1);
+    value = value.toLowerCase();
+    const reqBody = {
+      name: name,
+      color: value
+    };
+    this.jerseyService.addJersey(reqBody).subscribe(response => {
+      console.log(response);
+    })
+  }
+
+  deleteJersey(jerseyId) {
+    this.jerseyService.deleteJersey(jerseyId).subscribe(response =>{
       console.log(response);
     })
   }

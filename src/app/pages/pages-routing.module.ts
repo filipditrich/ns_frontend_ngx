@@ -8,6 +8,7 @@ import {MatchesResultsComponent} from "./matches/matches-results/matches-results
 import {MiscellaneousModule} from "./miscellaneous/miscellaneous.module";
 import {AdminModule} from "./admin/admin.module";
 import {RoleGuard} from "../@core/services/auth.guard";
+import {UserModule} from "./user/user.module";
 
 
 const routes: Routes = [{
@@ -25,11 +26,14 @@ const routes: Routes = [{
     }, {
       path: 'admin',
       loadChildren: () => AdminModule
-    }]
+    }, {
+      path: 'user',
+      loadChildren: () => UserModule
+  }]
   },
   {
       path: '',
-      redirectTo: 'pages/matches',
+      redirectTo: 'matches',
       pathMatch: 'full',
   }, {
     path: '**',

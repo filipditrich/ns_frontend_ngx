@@ -3,7 +3,7 @@
     <nb-card>
       <nb-card-header>
         <h2>{{match.title}}</h2>
-        <small>Datum: {{match.date | amDateFormat: 'DD.MM.YYYY'}}</small>
+        <small>{{match.date | amDateFormat: 'DD.MM.YYYY'}} v {{match.date | amDateFormat: 'HH.mm'}}</small>
       </nb-card-header>
       <nb-card-body>
         <form autocomplete="nope" novalidate class="ng-touched ng-dirty ng-valid" [formGroup]="form" (submit)="onSubmit(form.value, match._id)">

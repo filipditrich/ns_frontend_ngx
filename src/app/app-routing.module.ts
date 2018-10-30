@@ -62,7 +62,7 @@ const routes: Routes = [
       }
     ],
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full'},
+  { path: '', redirectTo: 'pages/matches', pathMatch: 'full'},
   { path: '**', redirectTo: 'pages' },
 ];
 

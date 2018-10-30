@@ -29,12 +29,12 @@ export class HeaderComponent implements OnInit {
     menuService.onItemClick()
       .pipe(filter(({ tag }) => tag === tag))
       .subscribe(bag => {
-        if (bag.item.title == "Odhlásit se"){
+        if (bag.item.title == "Odhlásit se") {
           this.router.navigate(['/auth/logout']);
           location.reload();
         }
-        if (bag.item.title == "Profil"){
-          this.router.navigate(['/user/profile']);
+        if (bag.item.title == "Profil") {
+          this.router.navigate(['/pages/user/profile']);
         }
   });
   }
