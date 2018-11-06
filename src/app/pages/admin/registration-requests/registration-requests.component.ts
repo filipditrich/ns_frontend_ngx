@@ -117,7 +117,6 @@ export class RegistrationRequestsComponent implements OnInit {
     if (!this.formInviteOne.valid) {
       this.oneEmail.markAsTouched();
     } else {
-      console.log('WE HERE BIČÍZ IN ELZ');
       this.sendEmailInvitations(requestBody);
       this.formInviteOne.reset();
     }

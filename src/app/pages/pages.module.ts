@@ -26,6 +26,7 @@ import {UserModule} from "./user/user.module";
 import { RegisterComponent } from './auth/register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {HttpHeadersInterceptor} from "../@core/services/http.interceptor";
+import {AuthModule} from "./auth/auth.module";
 
 const PAGES_COMPONENTS = [
   AlertsComponent, DialogsComponent, PagesComponent
@@ -40,7 +41,7 @@ const PAGES_COMPONENTS = [
     ToasterModule.forRoot(),
     Ng2SmartTableModule,
     MomentModule,
-    UserModule
+    UserModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

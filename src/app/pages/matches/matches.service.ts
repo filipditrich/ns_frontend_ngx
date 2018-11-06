@@ -32,4 +32,8 @@ export class MatchesService {
     return this.http.get<IResponse>('http://localhost:4000/api/core/places-all')
   }
 
+  getPlayedMatches(id): Observable<any> {
+    return this.http.get<any>(`http://localhost:4000/api/core/matches/user-played-matches/${id}`);
+  }
+
 }

@@ -76,7 +76,7 @@ export class PreventLogged implements CanActivate {
 
 @Injectable()
 export class RoleCheck {
-  private user = JSON.parse(sessionStorage.getItem('user'));
+  public user = JSON.parse(sessionStorage.getItem('user'));
   public userRoles = [];
 
   constructor() {
@@ -85,6 +85,10 @@ export class RoleCheck {
 
   isAdmin() {
     return this.userRoles.indexOf('admin') >= 0;
+  }
+
+  getUserData() {
+    return this.user;
   }
 }
 

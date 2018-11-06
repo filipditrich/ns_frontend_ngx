@@ -20,6 +20,8 @@ import {HttpHeadersInterceptor} from "./@core/services/http.interceptor";
 import {PreloadInitializer} from "./@core/services/preload.initializer";
 import {GlobalErrorHandler} from "./@core/services/error-handler.provider";
 import {AuthModule} from "./pages/auth/auth.module";
+import {RouterModule} from "@angular/router";
+import {SmartTableService} from "./@core/data/smart-table.service";
 
 
 export function PreloadInitializerProviderFactory(provider: PreloadInitializer) {

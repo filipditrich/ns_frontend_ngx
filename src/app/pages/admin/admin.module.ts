@@ -25,8 +25,7 @@ import { JerseyComponent } from './jersey/jersey.component';
     JerseyComponent
   ],
   providers: [
-    AdminUserManagementService,
-    SmartTableService
+    AdminUserManagementService
   ]
 })
 export class AdminModule { }

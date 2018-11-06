@@ -21,13 +21,13 @@ export class AdminUserManagementService {
   }
 
   updateUser(id, input): Observable<any> {
-    const update = { update: input };
-    return this.http.put<any>(`${getUrl('operator','ADMIN')}/update/users/${id}`, update);
+    return this.http.post<any>(`${getUrl('operator','USR_UPDATE')}/${id}`, input);
   }
 
-  deleteUser(id): Observable<any> {
-    return this.http.delete<any>(`${getUrl('operator','ADMIN')}/delete/users/${id}`);
+  getUserData(id): Observable<any> {
+    return this.http.get<any>(`${getUrl('operator','USR_DATA')}/${id}`);
   }
+
 
   createUser(user: IRegistrationCredentials, options): Observable<any> {
     const body = { user: user, options: options };

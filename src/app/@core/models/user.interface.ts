@@ -7,6 +7,7 @@ export interface IUser {
   token?: string;
   name: string;
   email: string;
+  jerseyNumber: Number;
   roles: UserRoles[];
   team: Team;
 }

@@ -10,20 +10,17 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
-      {{ modalContent }}
-    </div>
+    <div class="modal-body" [innerHtml]="modalContent"></div>
     <div class="modal-footer">
-      <button class="btn btn-md btn-primary" (click)="closeModal()">Save changes</button>
+      <button *ngFor="let button of modalButtons" class="btn btn-md {{button.classes}}" (click)="button.action()">{{button.text}}</button>
     </div>
   `,
 })
 export class ModalComponent {
 
   modalHeader: string;
-  modalContent = `Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-    nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-    nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.`;
+  modalContent: string;
+  modalButtons = [];
 
   constructor(private activeModal: NgbActiveModal) { }
 

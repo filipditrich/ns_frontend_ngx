@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
   callLoginSvc(input) {
     this.loginService.logInRequest(input).subscribe(response => {
       if (response.response.success && response.token) {
+        console.log(response.user);
         AuthService.storeUserData(response.user, response.token);
         // this.alertsService.alertSuccess({
         //   title: 'Logged In',
