@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatchesService} from "./matches.service";
 import {ErrorHelper} from "../../@core/helpers/error.helper";
 import { SelectControlValueAccessor } from '@angular/forms';
+import {PlacesService} from "../admin/places/places.service";
 
 
 @Component({
@@ -20,6 +21,7 @@ export class MatchesComponent implements OnInit {
 
   constructor(
     private matchesService: MatchesService,
+    private placesService: PlacesService,
     private errorHelper: ErrorHelper,
     private roleCheck: RoleCheck
 
@@ -38,7 +40,7 @@ export class MatchesComponent implements OnInit {
       this.errorHelper.handleGenericError(err);
     });
 
-    this.matchesService.getAllPlaces().subscribe(response => {
+    this.placesService.getAllPlaces().subscribe(response => {
       this.placeArray = response["response"];
     }, err => {
       this.errorHelper.handleGenericError(err);
@@ -83,11 +85,10 @@ export class MatchesComponent implements OnInit {
     // const user = this.roleCheck.getUserInfo();
     const requestBody = {
       participation: willParticipate,
-      matchID: matchId,
       userName: user["name"],
       userID: user["_id"],
     };
-    this.matchesService.participationInMatchRequest(requestBody).subscribe( response => {
+    this.matchesService.participationInMatchRequest(requestBody, matchId).subscribe( response => {
       console.log(response);
     }, err => {
       this.errorHelper.handleGenericError(err);

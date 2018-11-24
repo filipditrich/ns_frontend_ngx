@@ -41,6 +41,10 @@ export class PagesComponent {
       {
         title: 'Dresy',
         link: '/pages/admin/jersey',
+      },
+      {
+        title: 'Místa',
+        link: '/pages/admin/places',
       }
     ]
   }, {

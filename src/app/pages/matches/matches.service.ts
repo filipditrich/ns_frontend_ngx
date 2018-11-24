@@ -20,12 +20,12 @@ export class MatchesService {
     return this.http.post<IResponse>('http://localhost:4000/api/core/matches/get-all', {})
   }
 
-  participationInMatchRequest(requestBody): Observable<IResponse> {
-    return this.http.post<IResponse>('http://localhost:4000/api/core/matches/participation', requestBody)
+  participationInMatchRequest(requestBody, id): Observable<IResponse> {
+    return this.http.post<IResponse>(`http://localhost:4000/api/core/matches/participation/${id}`, requestBody)
   }
 
-  writeMatchResultsRequest(input): Observable<IResponse> {
-    return this.http.post<IResponse>('http://localhost:4000/api/core/matches/write-results', input)
+  writeMatchResultsRequest(input, id): Observable<IResponse> {
+    return this.http.post<IResponse>(`http://localhost:4000/api/core/matches/write-results/${id}`, input)
   }
 
   getAllPlaces(): Observable<IResponse> {

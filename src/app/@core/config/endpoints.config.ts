@@ -13,11 +13,17 @@ export function getById(id: string, service: string) {
 
 export function getUrlById(module: string, id: string) {
   const res = findByProp(ENDPOINTS[module], 'id', id);
+  console.log(res);
   return res ? res.url : undefined;
 }
 
 export function getUrl(module:string ,id: string) {
-  const endpoint = getUrlById(module, id);
+  let endpoint;
+  if (module === 'core') {
+    endpoint = '/core' + getUrlById(module, id);
+  } else {
+    endpoint = getUrlById(module, id);
+  }
   console.log(endpoint);
   return endpoint === undefined ?  `${APIRoot}` : `${APIRoot}/api${endpoint}`;
 }

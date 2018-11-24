@@ -13,7 +13,6 @@ export class JerseysService {
   getAllJersey(): Observable<IResponse> {
     return this.http.get<IResponse>('http://localhost:4000/api/core/jerseys/get-all');
   }
-
   addJersey(input) {
     return this.http.post('http://localhost:4000/api/core/jerseys', {input})
   }

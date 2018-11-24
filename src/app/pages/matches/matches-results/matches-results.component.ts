@@ -65,17 +65,16 @@ export class MatchesResultsComponent implements OnInit {
         };
         const requestBody = {
           value: value,
-          matchID: matchID,
           match: matchInfo
         };
-        this.callWriteMatchResultsSvc(requestBody);
+        this.callWriteMatchResultsSvc(requestBody, matchID);
         this.submitted = true;
       }
     }
   }
 
-  callWriteMatchResultsSvc(requestBody) {
-    this.matchesService.writeMatchResultsRequest(requestBody).subscribe(response => {
+  callWriteMatchResultsSvc(requestBody, matchID) {
+    this.matchesService.writeMatchResultsRequest(requestBody, matchID).subscribe(response => {
       console.log(response);
     }, err => {
       this.errorHelper.handleGenericError(err);
